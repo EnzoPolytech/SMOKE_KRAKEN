@@ -1,5 +1,4 @@
 #include "FinDePartie.hh"
-#include "VagueNiv1.hh"
 
 using namespace sf;
 using namespace std;
@@ -145,8 +144,7 @@ void FinDePartie::run()
 
           if (limiteBoutonRejouer.contains(positionSouris))
           {
-            VagueNiv1 app(nomJoueur);
-            app.run();
+            //??
             fenetre.close();
           }
           else if (limiteBoutonQuitter.contains(positionSouris))

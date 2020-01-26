@@ -1,8 +1,8 @@
 #include "NomJoueur.hh"
-#include "VagueNiv1.hh"
 #include "Intro.hh"
 #include "Scene1.hh"
 #include "Scene2.hh"
+#include "JeuVague.hh"
 #include "LabyrintheNiv1.hh"
 #include "JeuBrouillard.hh"
 
@@ -179,17 +179,14 @@ void NomJoueur::run()
             Intro intro1;
             intro1.run();
 
-            VagueNiv1 app1(nomJoueur);
+            JeuVague app1(nomJoueur, 1);
             app1.run();
 
             Scene1 scene1;
             scene1.run();
 
-            VagueNiv2 app2(nomJoueur);
+            JeuBrouillard app2(nomJoueur, 1);
             app2.run();
-
-            // JeuBrouillard app2(nomJoueur, 1);
-            // app2.run();
 
             Scene2 scene2;
             scene2.run();
@@ -209,8 +206,7 @@ void NomJoueur::run()
       {
         if (event.key.code == sf::Keyboard::Return)
         {
-
-          fenetre.close();
+          // fenetre.close();
         }
       }
       else{}

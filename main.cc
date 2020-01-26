@@ -1,8 +1,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-// #include "Menu.hh"
+#include "Menu.hh"
 // #include "LabyrintheNiv1.hh"
-#include "VagueNiv1.hh"
+// #include "JeuVague.hh"
 // #include "JeuBrouillard.hh"
 // #include "Intro.hh"
 
@@ -14,8 +14,8 @@ int main(int argc, char const *argv[])
 
   srand(time(NULL)); // initialisation de rand
 
-	// Menu menu;
-	// menu.run();
+	Menu menu;
+	menu.run();
 
   // LabyrintheNiv1 test("enzo");
   // test.run();
@@ -23,8 +23,8 @@ int main(int argc, char const *argv[])
   // JeuBrouillard test("enzo", 1);
   // test.run();
 
-  VagueNiv1 app("enzo");
-  app.run();
+  // JeuVague app("enzo", 1);
+  // app.run();
 
   // Intro test;
   // test.run();
