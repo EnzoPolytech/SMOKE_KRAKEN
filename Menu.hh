@@ -28,4 +28,7 @@ private:
   sf::Texture perso_t;
   sf::Sprite perso_s;
 
+  //Pour remplir la fenetre Record
+  std::map<std::string,int> recordGlobal;
+
 };

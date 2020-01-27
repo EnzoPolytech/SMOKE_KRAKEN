@@ -114,11 +114,12 @@ void Menu::run()
           if (limiteBoutonJouer.contains(positionSouris))
           {
             NomJoueur pop;
-            pop.run();
+            string nomTemp = pop.run();
+            recordGlobal.insert(std::make_pair(nomTemp, 0));
           }
           else if (limiteBoutonRecord.contains(positionSouris))
           {
-            Record rec;
+            Record rec(recordGlobal);
             rec.run();
           }
           else{}

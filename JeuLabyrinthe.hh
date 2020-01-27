@@ -2,15 +2,17 @@
 #include "Jeu.hh"
 #include "Chrono.hh"
 
+#define NB_FUMEE 45
+#define NB_CHRONO 4
+const std::string CHEMIN_IMAGE_SORTIE("images/sortie.png");
 
 class JeuLabyrinthe : public Jeu
 {
 public:
 
   JeuLabyrinthe(std::string nom, int nbFumee, int nbChrono);
-  JeuLabyrinthe(std::string nom, std::string titre, int nbFumee, int nbChrono);
 
-  virtual void run() = 0;
+  void run();
 
   int alea_a_b_Int(int a, int b){return rand()%(b-a) + a;}
 
@@ -22,5 +24,3 @@ protected:
   sf::Sprite sortie_s;
 
 };
-
-

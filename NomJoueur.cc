@@ -3,7 +3,7 @@
 #include "Scene1.hh"
 #include "Scene2.hh"
 #include "JeuVague.hh"
-#include "LabyrintheNiv1.hh"
+#include "JeuLabyrinthe.hh"
 #include "JeuBrouillard.hh"
 
 
@@ -84,7 +84,7 @@ nomJoueur(nom)
   }
 }
 
-void NomJoueur::run()
+string NomJoueur::run()
 {
 
   fenetre.clear(Color(255,255,255,255));
@@ -191,13 +191,12 @@ void NomJoueur::run()
             Scene2 scene2;
             scene2.run();
 
-            LabyrintheNiv1 app3(nomJoueur);
+            JeuLabyrinthe app3(nomJoueur, NB_FUMEE, NB_CHRONO);
             app3.run();
 
-            //BrouillardNiv1 app(nomJoueur);
-            //app.run();
-
             fenetre.close();
+
+            return nomJoueur;
 
           }
         }
@@ -206,10 +205,11 @@ void NomJoueur::run()
       {
         if (event.key.code == sf::Keyboard::Return)
         {
-          // fenetre.close();
+          fenetre.close();
         }
       }
       else{}
     }
   }
+  return nomJoueur;
 }

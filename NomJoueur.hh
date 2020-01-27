@@ -13,7 +13,7 @@ public:
   NomJoueur();
   NomJoueur(std::string nom);
 
-  void run();
+  std::string run();
 
   std::string getNomJoueur(){return nomJoueur;}
 

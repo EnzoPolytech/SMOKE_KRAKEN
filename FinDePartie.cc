@@ -1,4 +1,10 @@
 #include "FinDePartie.hh"
+#include "Intro.hh"
+#include "Scene1.hh"
+#include "Scene2.hh"
+#include "JeuVague.hh"
+#include "JeuLabyrinthe.hh"
+#include "JeuBrouillard.hh"
 
 using namespace sf;
 using namespace std;
@@ -144,7 +150,24 @@ void FinDePartie::run()
 
           if (limiteBoutonRejouer.contains(positionSouris))
           {
-            //??
+            Intro intro1;
+            intro1.run();
+
+            JeuVague app1(nomJoueur, 1);
+            app1.run();
+
+            Scene1 scene1;
+            scene1.run();
+
+            JeuBrouillard app2(nomJoueur, 1);
+            app2.run();
+
+            Scene2 scene2;
+            scene2.run();
+
+            JeuLabyrinthe app3(nomJoueur, NB_FUMEE, NB_CHRONO);
+            app3.run();
+
             fenetre.close();
           }
           else if (limiteBoutonQuitter.contains(positionSouris))
