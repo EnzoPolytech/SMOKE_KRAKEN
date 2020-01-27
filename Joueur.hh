@@ -19,12 +19,14 @@ public :
 
     Joueur();
 
+
     void deplacerHaut();
     void deplacerBas();
     void deplacerGauche();
     void deplacerDroite();
 
     void reinitialiserPosition(){joueur_s.setPosition(POS_INIT_JOUEUR);}
+    void reinitialiserSon();
 
     void modifierPosition(sf::Vector2f position){joueur_s.setPosition(position);}
 

@@ -67,14 +67,14 @@ void JeuVague::run()
             // exit(EXIT_SUCCESS);
             break;
 
-          case Event::KeyPressed : // Appui sur une touche
+          case Event::KeyReleased : // Appui sur une touche
             switch(event.key.code)
             {
-              //Ca marche pas !
               // case Keyboard::P : // Touche P : mettre le jeu en Pause
               //   pauseChrono();
               //   joueur.reinitialiserPosition();
               //   break;
+
 
               default :
                 break;
@@ -92,6 +92,7 @@ void JeuVague::run()
         {
           joueur.deplacerHaut();
         }
+
       }
       else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
       {
@@ -114,7 +115,7 @@ void JeuVague::run()
           joueur.deplacerGauche();
         }
       }
-      else{}
+
 
       //On parcour notre map de fumee
       for (it2 = mapFumee.begin(); it2 != mapFumee.end(); ++it2)
@@ -222,4 +223,3 @@ void JeuVague::run()
     fenetre.display();
   }
 }
-

@@ -30,6 +30,7 @@ void Joueur::deplacerDroite()
     joueur_s.setTextureRect(sf::IntRect(173, 43, 45, 79));
     joueur_s.move(vitesse, 0);
     marche.play();
+
 }
 
 void Joueur::deplacerGauche()
@@ -51,4 +52,9 @@ void Joueur::deplacerBas()
     joueur_s.setTextureRect(sf::IntRect(30, 38, 43, 81));
     joueur_s.move(0,vitesse);
     marche.play();
+}
+
+void Joueur::reinitialiserSon()
+{
+  marche.stop();
 }
