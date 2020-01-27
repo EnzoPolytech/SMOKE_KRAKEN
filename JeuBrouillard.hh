@@ -1,5 +1,9 @@
 #pragma once
 #include "Jeu.hh"
+#include "Objet.hh"
+
+const std::string CHEMIN_IMAGE_EXTINCTEUR = "images/extincteur.png";
+const sf::Vector2f TAILLE_IMAGE_EXTINCTEUR(51,51);
 
 class JeuBrouillard : public Jeu
 {
@@ -19,5 +23,9 @@ protected:
 
   // Sprite nuit_s;
   // Texture nuit_t;
+
+  Objet * extincteur;
+
+  int score;
 
 };

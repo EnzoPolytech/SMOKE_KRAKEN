@@ -1,10 +1,20 @@
 #pragma once
 #include "Jeu.hh"
-#include "Chrono.hh"
+#include "Objet.hh"
 
 #define NB_FUMEE 45
 #define NB_CHRONO 4
+#define NB_EXTINCTEUR 4
+
+const std::string CHEMIN_IMAGE_EXTINCTEUR = "images/extincteur.png";
+const sf::Vector2f TAILLE_IMAGE_EXTINCTEUR(51,51);
+
+const std::string CHEMIN_IMAGE_CHRONO = "images/chrono.png";
+const sf::Vector2f TAILLE_IMAGE_CHRONO(51,51);
+
 const std::string CHEMIN_IMAGE_SORTIE("images/sortie.png");
+const sf::Vector2f TAILLE_IMAGE_SORTIE(51,51);
+
 
 class JeuLabyrinthe : public Jeu
 {
@@ -18,9 +28,12 @@ public:
 
 protected:
 
-  std::vector<Chrono *> tabChrono;
+  std::vector<Objet *> tabChrono;
 
-  sf::Texture sortie_t;
-  sf::Sprite sortie_s;
+  std::vector<Objet *> tabExtincteur;
+
+  Objet sortie;
+
+  int score;
 
 };

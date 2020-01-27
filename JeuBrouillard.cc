@@ -14,13 +14,13 @@ JeuBrouillard::JeuBrouillard(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode 
   }
   else if (niveau == 2)
   {
-    nb_fumee = 10;
-    vitesse_fumee = 2;
+    nb_fumee = 8;
+    vitesse_fumee = 1;
   }
   else
   {
-    nb_fumee = 15;
-    vitesse_fumee = 3;
+    nb_fumee = 12;
+    vitesse_fumee = 2;
   }
 
   for (int i = 0; i < nb_fumee; ++i)
@@ -83,6 +83,8 @@ void JeuBrouillard::run()
 {
   int tempsActuel = 0;
   int chrono = 30;
+  int visibleExtincteur = 0;
+  int xAlea, yAlea;
 
   joueur.reinitialiserPosition();
   fenetre.setFramerateLimit(60); // limite la fenêtre à 60 images par seconde
@@ -298,6 +300,39 @@ void JeuBrouillard::run()
       for (it2 = mapFumee.begin(); it2 != mapFumee.end(); ++it2)
       {
         fenetre.draw((*(it2->first)).recupererSprite());
+      }
+
+      //On cree un rectangle autour du joueur pour detecter les collisions
+      FloatRect rectJoueur = joueur.recupererSprite().getGlobalBounds();
+      rectJoueur.height -= 13;
+      rectJoueur.width -= 10;
+
+      if(visibleExtincteur == 0)
+      {
+        //On tire des coordonnée aléatoire
+        xAlea = alea_a_b_Int(POSITION_PLATEAU.x + 50, POSITION_PLATEAU.x + TAILLE_PLATEAU.x - 50);
+        yAlea = alea_a_b_Int(POSITION_PLATEAU.y + 50, POSITION_PLATEAU.y + TAILLE_PLATEAU.y - 50);
+
+        extincteur = new Objet(CHEMIN_IMAGE_EXTINCTEUR, TAILLE_IMAGE_EXTINCTEUR, Vector2f(xAlea, yAlea));
+
+        visibleExtincteur = 1;
+      }
+
+      //On fait apparaitre l'objet créer sur la fenetre
+      if (extincteur != NULL)
+      {
+        fenetre.draw((*extincteur).recupererSprite());
+
+        //Si le joueur touche un extincteur, son score augmente
+        if (rectJoueur.intersects((*extincteur).recupererSprite().getGlobalBounds()))
+        {
+          score++;
+
+          xAlea = alea_a_b_Int(POSITION_PLATEAU.x + 50, POSITION_PLATEAU.x + TAILLE_PLATEAU.x - 50);
+          yAlea = alea_a_b_Int(POSITION_PLATEAU.y + 50, POSITION_PLATEAU.y + TAILLE_PLATEAU.y - 50);
+          (*extincteur).modifierPosition(Vector2f(xAlea, yAlea)); //on retire l'objet de la fenetre
+          visibleExtincteur = 0;
+        }
       }
 
       fenetre.display();

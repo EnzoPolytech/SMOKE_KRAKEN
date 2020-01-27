@@ -3,7 +3,7 @@
 using namespace sf;
 using namespace std;
 
-JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague")
+JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague"), score(0)
 {
   if (niveau == 1)
   {
@@ -23,13 +23,14 @@ JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague")
     //On remplis la map avec les Fumee au positions aléaoire
     //comme clés et un bit d'apparition en valeur
     mapFumee[new Fumee(Vector2f(POSITION_PLATEAU.x + TAILLE_IMAGE_FUMEE.x, (POSITION_PLATEAU.y)+50*(i-1)))] = 1;
-
   }
 }
 
 void JeuVague::run()
 {
   int nbVague = 5;
+  int visibleExtincteur = 0;
+  int xAlea, yAlea;
 
   map<Fumee *, int>::iterator it2; //Un itérateur sur la mapFumee
 
@@ -158,7 +159,38 @@ void JeuVague::run()
       fenetre.draw(texteChrono);
       fenetre.draw(texteNomJoueur);
 
+      //On cree un rectangle autour du joueur pour detecter les collisions
+      FloatRect rectJoueur = joueur.recupererSprite().getGlobalBounds();
+      rectJoueur.height -= 13;
+      rectJoueur.width -= 10;
 
+      if(visibleExtincteur == 0)
+      {
+        //On tire des coordonnée aléatoire
+        xAlea = alea_a_b_Int(POSITION_PLATEAU.x + 50, POSITION_PLATEAU.x + TAILLE_PLATEAU.x - 50);
+        yAlea = alea_a_b_Int(POSITION_PLATEAU.y + 50, POSITION_PLATEAU.y + TAILLE_PLATEAU.y - 50);
+
+        extincteur = new Objet(CHEMIN_IMAGE_EXTINCTEUR, TAILLE_IMAGE_EXTINCTEUR, Vector2f(xAlea, yAlea));
+
+        visibleExtincteur = 1;
+      }
+
+      //On fait apparaitre l'objet créer sur la fenetre
+      if (extincteur != NULL)
+      {
+        fenetre.draw((*extincteur).recupererSprite());
+
+        //Si le joueur touche un extincteur, son score augmente
+        if (rectJoueur.intersects((*extincteur).recupererSprite().getGlobalBounds()))
+        {
+          score++;
+
+          xAlea = alea_a_b_Int(POSITION_PLATEAU.x + 50, POSITION_PLATEAU.x + TAILLE_PLATEAU.x - 50);
+          yAlea = alea_a_b_Int(POSITION_PLATEAU.y + 50, POSITION_PLATEAU.y + TAILLE_PLATEAU.y - 50);
+          (*extincteur).modifierPosition(Vector2f(xAlea, yAlea)); //on retire l'objet de la fenetre
+          visibleExtincteur = 0;
+        }
+      }
 
       int vague2 = 0;
       int k = 0;
@@ -213,7 +245,7 @@ void JeuVague::run()
         }
       }
 
-      //Si le chrono arrive a 0, le niveau est reussi
+      //Si le nb de vague arrive a 0, le niveau est reussi
       if (nbVague == 0)
       {
         fenetre.close();

@@ -5,8 +5,8 @@
 #include "Scene3.hh"
 #include "Scene5.hh"
 #include "Scene6.hh"
-#include "JeuVague.hh"
-#include "JeuLabyrinthe.hh"
+// #include "JeuVague.hh"
+// #include "JeuLabyrinthe.hh"
 #include "JeuBrouillard.hh"
 
 
@@ -179,8 +179,8 @@ string NomJoueur::run()
           {
             /* Mettre ici le run() de la Fenetre de Jeu ! */
 
-            Scene3 scene3;
-            scene3.run();
+            // Scene3 scene3;
+            // scene3.run();
 
             // Intro intro1;
             // intro1.run();
@@ -191,8 +191,8 @@ string NomJoueur::run()
             // Scene1 scene1;
             // scene1.run();
             //
-            // JeuBrouillard app2(nomJoueur, 1);
-            // app2.run();
+            JeuBrouillard app2(nomJoueur, 1);
+            app2.run();
             //
             // Scene2 scene2;
             // scene2.run();

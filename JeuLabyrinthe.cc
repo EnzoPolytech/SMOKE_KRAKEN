@@ -3,7 +3,8 @@
 using namespace sf;
 using namespace std;
 
-JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):Jeu(nomJoueur, "Mode Labyrinthe")
+JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):
+Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTIE), score(0)
 {
   for (int i = 1; i <= nbFumee; ++i)
   {
@@ -11,17 +12,11 @@ JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):Jeu(no
   }
   for (int i = 1; i <= nbChrono; ++i)
   {
-    tabChrono.push_back(new Chrono());
+    tabChrono.push_back(new Objet(CHEMIN_IMAGE_CHRONO, TAILLE_IMAGE_CHRONO));
   }
-
-  if(!sortie_t.loadFromFile(CHEMIN_IMAGE_SORTIE))
+  for (int i = 1; i <= NB_EXTINCTEUR; ++i)
   {
-      cerr << "Erreur de chargement de l'image de la sortie " << CHEMIN_IMAGE_SORTIE << endl;
-  }
-  else
-  {
-    sortie_s.setTexture(sortie_t);
-    sortie_s.setPosition(Vector2f(POSITION_PLATEAU.x + 10*TAILLE_IMAGE_FUMEE.x,POSITION_PLATEAU.y + 5));
+    tabExtincteur.push_back(new Objet(CHEMIN_IMAGE_EXTINCTEUR, TAILLE_IMAGE_EXTINCTEUR));
   }
 
   int pos_joueur_ini_X = POSITION_PLATEAU.x;
@@ -29,6 +24,8 @@ JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):Jeu(no
   Vector2f pos_joueur_ini = Vector2f(pos_joueur_ini_X, pos_joueur_ini_Y);
 
   joueur.modifierPosition(pos_joueur_ini);
+
+  sortie.modifierPosition(Vector2f(POSITION_PLATEAU.x + 10*TAILLE_IMAGE_FUMEE.x,POSITION_PLATEAU.y + 5));
 
   //On positionne les fumees
 
@@ -107,6 +104,12 @@ JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):Jeu(no
   (*tabChrono[2]).modifierPosition(Vector2f(POSITION_PLATEAU.x, POSITION_PLATEAU.y + 11*TAILLE_IMAGE_CHRONO.y));
   (*tabChrono[3]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 9*TAILLE_IMAGE_CHRONO.x, POSITION_PLATEAU.y + 8*TAILLE_IMAGE_CHRONO.y));
 
+  //On positionne les extincteurs
+
+  (*tabExtincteur[0]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 4*TAILLE_IMAGE_EXTINCTEUR.x, POSITION_PLATEAU.y + 5*TAILLE_IMAGE_EXTINCTEUR.y));
+  (*tabExtincteur[1]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 5*TAILLE_IMAGE_EXTINCTEUR.x, POSITION_PLATEAU.y + 5));
+  (*tabExtincteur[2]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 5, POSITION_PLATEAU.y + 9*TAILLE_IMAGE_EXTINCTEUR.y));
+  (*tabExtincteur[3]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 9*TAILLE_IMAGE_EXTINCTEUR.x, POSITION_PLATEAU.y + 2*TAILLE_IMAGE_EXTINCTEUR.y));
 }
 
 void JeuLabyrinthe::run()
@@ -199,7 +202,6 @@ void JeuLabyrinthe::run()
             end.run();
             fenetre.close();
             return;
-            // exit(EXIT_SUCCESS);
           }
         }
       }
@@ -221,7 +223,7 @@ void JeuLabyrinthe::run()
       //On dessine tout nos éléments sur notre fenetre
       fenetre.draw(contourPlateau);
       fenetre.draw(joueur.recupererSprite());
-      fenetre.draw(sortie_s);
+      fenetre.draw(sortie.recupererSprite());
       fenetre.draw(texteChrono);
       fenetre.draw(texteNomJoueur);
 
@@ -249,11 +251,27 @@ void JeuLabyrinthe::run()
             tabChrono[i-1] = NULL; //on enleve le chrono
           }
         }
-        else{}
+      }
+      //on parcours notre tableau d'extincteur
+      for (int i = 1; i <= NB_EXTINCTEUR; ++i)
+      {
+        //Si il y a un extincteur, alors on le dessine
+        if (tabExtincteur[i-1] != NULL)
+        {
+          fenetre.draw((*tabExtincteur[i-1]).recupererSprite());
+
+          //Si le joueur touche un extincteur son score augmente
+          if (rectJoueur.intersects((*tabExtincteur[i-1]).recupererSprite().getGlobalBounds()))
+          {
+            score++;
+            tabExtincteur[i-1] = NULL; //on enleve le chrono
+          }
+        }
       }
 
+
       //Si le joueur atteint la sortie
-      if (rectJoueur.intersects(sortie_s.getGlobalBounds()))
+      if (rectJoueur.intersects((sortie.recupererSprite()).getGlobalBounds()))
       {
         //Passage a la fenetre suivante !
         fenetre.close();
