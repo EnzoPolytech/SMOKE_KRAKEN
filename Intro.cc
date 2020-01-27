@@ -135,7 +135,7 @@ void Intro::run()
         switch(event.key.code)
         {
 
-          case Keyboard::T :
+          case Keyboard::Space :
             music.stop();
             machine.stop();
             fenetre.close();

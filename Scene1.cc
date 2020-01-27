@@ -112,7 +112,7 @@ void Scene1::run()
         switch(event.key.code)
         {
 
-          case Keyboard::T :
+          case Keyboard::Space :
             marcher.stop();
             dessiner.stop();
             fenetre.close();

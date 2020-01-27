@@ -115,7 +115,7 @@ void Scene2::run()
         switch(event.key.code)
         {
 
-          case Keyboard::T :
+          case Keyboard::Space :
             ambiance.stop();
             sanglot.stop();
             fenetre.close();
