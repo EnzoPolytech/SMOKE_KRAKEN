@@ -3,6 +3,7 @@
 #include "Scene1.hh"
 #include "Scene2.hh"
 #include "Scene3.hh"
+#include "Scene5.hh"
 #include "Scene6.hh"
 #include "JeuVague.hh"
 #include "JeuLabyrinthe.hh"
@@ -178,8 +179,8 @@ string NomJoueur::run()
           {
             /* Mettre ici le run() de la Fenetre de Jeu ! */
 
-            Scene6 scene6;
-            scene6.run();
+            Scene3 scene3;
+            scene3.run();
 
             // Intro intro1;
             // intro1.run();
@@ -198,6 +199,9 @@ string NomJoueur::run()
             //
             // JeuLabyrinthe app3(nomJoueur, NB_FUMEE, NB_CHRONO);
             // app3.run();
+            //
+            // Scene6 scene6;
+            // scene6.run();
 
             fenetre.close();
 
