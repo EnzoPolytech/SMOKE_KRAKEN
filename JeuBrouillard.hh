@@ -12,7 +12,7 @@ public:
   JeuBrouillard(std::string nom, int niveau);
   JeuBrouillard(std::string nom, std::string titre, int niveau);
 
-  void run();
+  int run();
 
   int alea_a_b_Int(int a, int b){return rand()%(b-a) + a;}
 
@@ -25,7 +25,5 @@ protected:
   // Texture nuit_t;
 
   Objet * extincteur;
-
-  int score;
 
 };

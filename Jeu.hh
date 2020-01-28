@@ -23,7 +23,7 @@ class Jeu{
     Jeu(std::string nom);
     Jeu(std::string nom, std::string titre);
 
-    virtual void run() = 0;
+    virtual int run() = 0;
 
     void lancerChrono();
     void pauseChrono();
@@ -53,5 +53,7 @@ class Jeu{
 
     sf::Text texteChrono;
     sf::Text texteNomJoueur;
+
+    int score;
 
 };

@@ -7,7 +7,7 @@
 #include "Scene6.hh"
 // #include "JeuVague.hh"
 // #include "JeuLabyrinthe.hh"
-#include "JeuBrouillard.hh"
+// #include "JeuBrouillard.hh"
 
 
 using namespace sf;
@@ -191,8 +191,8 @@ string NomJoueur::run()
             // Scene1 scene1;
             // scene1.run();
             //
-            JeuBrouillard app2(nomJoueur, 1);
-            app2.run();
+            // JeuBrouillard app2(nomJoueur, 1);
+            // app2.run();
             //
             // Scene2 scene2;
             // scene2.run();

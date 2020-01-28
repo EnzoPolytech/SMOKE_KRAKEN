@@ -79,7 +79,7 @@ JeuBrouillard::JeuBrouillard(string nomJoueur, string titre, int niveau):Jeu(nom
 }
 
 
-void JeuBrouillard::run()
+int JeuBrouillard::run()
 {
   int tempsActuel = 0;
   int chrono = 30;
@@ -115,6 +115,7 @@ void JeuBrouillard::run()
         {
           case Event::Closed : // Croix de fermeture du programme
             fenetre.close();
+            return 0;
             break;
 
           // case Event::KeyPressed : // Appui sur une touche
@@ -176,7 +177,7 @@ void JeuBrouillard::run()
       if (chrono == 0)
       {
         fenetre.close();
-        return;
+        return score;
       }
 
       map<Fumee *, int>::iterator it2; //Un itérateur sur la mapFumee
@@ -185,11 +186,13 @@ void JeuBrouillard::run()
       {
         FloatRect rectJoueur = joueur.recupererSprite().getGlobalBounds();
         rectJoueur.height -= 10;
+        //Si le joueur touche une fumee, la partie est finie
         if (rectJoueur.intersects((*(it2->first)).recupererSprite().getGlobalBounds()))
         {
           FinDePartie end;
           end.run();
           fenetre.close();
+          return 0;
         }
       }
 
@@ -337,5 +340,6 @@ void JeuBrouillard::run()
 
       fenetre.display();
   }
+  return 0;
 }
 

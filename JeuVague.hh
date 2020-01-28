@@ -15,7 +15,7 @@ public:
 
   JeuVague(std::string nom, int niveau);
 
-  void run();
+  int run();
 
   float alea_Proba(){return (float)rand() / (float)RAND_MAX;}
   int alea_a_b_Int(int a, int b){return rand()%(b-a) + a;}
@@ -24,7 +24,5 @@ protected:
   std::map<Fumee *, int> mapFumee;
 
   Objet * extincteur;
-
-  int score;
 
 };

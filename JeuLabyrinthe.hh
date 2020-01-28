@@ -22,7 +22,7 @@ public:
 
   JeuLabyrinthe(std::string nom, int nbFumee, int nbChrono);
 
-  void run();
+  int run();
 
   int alea_a_b_Int(int a, int b){return rand()%(b-a) + a;}
 
@@ -33,7 +33,5 @@ protected:
   std::vector<Objet *> tabExtincteur;
 
   Objet sortie;
-
-  int score;
 
 };

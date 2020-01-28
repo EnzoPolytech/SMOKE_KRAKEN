@@ -4,7 +4,7 @@ using namespace sf;
 using namespace std;
 
 JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):
-Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTIE), score(0)
+Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTIE)
 {
   for (int i = 1; i <= nbFumee; ++i)
   {
@@ -112,7 +112,7 @@ Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTI
   (*tabExtincteur[3]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 9*TAILLE_IMAGE_EXTINCTEUR.x, POSITION_PLATEAU.y + 2*TAILLE_IMAGE_EXTINCTEUR.y));
 }
 
-void JeuLabyrinthe::run()
+int JeuLabyrinthe::run()
 {
   int tempsActuel = 0;
   int chrono = 60;
@@ -134,7 +134,7 @@ void JeuLabyrinthe::run()
         {
           case Event::Closed : // Croix de fermeture du programme
             fenetre.close();
-            return;
+            return 0;
             // exit(EXIT_SUCCESS);
             break;
 
@@ -201,7 +201,7 @@ void JeuLabyrinthe::run()
             FinDePartie end;
             end.run();
             fenetre.close();
-            return;
+            return 0;
           }
         }
       }
@@ -275,11 +275,11 @@ void JeuLabyrinthe::run()
       {
         //Passage a la fenetre suivante !
         fenetre.close();
-        return;
+        return score;
         // exit(EXIT_SUCCESS);
       }
 
       fenetre.display();
   }
-
+  return 0;
 }

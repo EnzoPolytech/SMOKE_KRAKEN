@@ -3,7 +3,7 @@
 using namespace sf;
 using namespace std;
 
-JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague"), score(0)
+JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague")
 {
   if (niveau == 1)
   {
@@ -26,7 +26,7 @@ JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague"), s
   }
 }
 
-void JeuVague::run()
+int JeuVague::run()
 {
   int nbVague = 5;
   int visibleExtincteur = 0;
@@ -64,7 +64,7 @@ void JeuVague::run()
         {
           case Event::Closed : // Croix de fermeture du programme
             fenetre.close();
-            return;
+            return 0;
             // exit(EXIT_SUCCESS);
             break;
 
@@ -132,7 +132,7 @@ void JeuVague::run()
               FinDePartie end;
               end.run();
               fenetre.close();
-              return;
+              return 0;
             }
           }
         }
@@ -249,9 +249,10 @@ void JeuVague::run()
       if (nbVague == 0)
       {
         fenetre.close();
-        return;
+        return score;
       }
 
     fenetre.display();
   }
+  return 0;
 }
