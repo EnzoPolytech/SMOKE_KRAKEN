@@ -3,8 +3,11 @@
 using namespace sf;
 using namespace std;
 
-JeuVague::JeuVague(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Vague")
+JeuVague::JeuVague(string nomJoueur, int niveau, int scoreActuel):
+Jeu(nomJoueur, "Mode Vague")
 {
+  score = scoreActuel;
+
   if (niveau == 1)
   {
     //??
@@ -141,7 +144,7 @@ int JeuVague::run()
 
       for (it2 = mapFumee.begin(); it2 != mapFumee.end(); ++it2)
       {
-        //Deplacement à droite
+        //Deplacement à droite des fumee (vague)
         if ((*(it2->first)).recupererSprite().getPosition().x + TAILLE_IMAGE_FUMEE.x < POSITION_PLATEAU.x + TAILLE_PLATEAU.x)
         {
           (*(it2->first)).deplacerDroite();
@@ -154,10 +157,14 @@ int JeuVague::run()
       texteNomJoueur.setString(nomJoueur);
       texteNomJoueur.setPosition(TAILLE_FENETRE_JEU.x - ((texteNomJoueur.getGlobalBounds()).width)*2,TAILLE_FENETRE_JEU.y - ((texteNomJoueur.getGlobalBounds()).height)*2);
 
+      texteScore.setString("Score : " + to_string(score));
+      texteScore.setPosition(TAILLE_FENETRE_JEU.x - ((texteScore.getGlobalBounds()).width)*2, ((texteScore.getGlobalBounds()).height)*2);
+
       fenetre.draw(contourPlateau);
       fenetre.draw(joueur.recupererSprite());
       fenetre.draw(texteChrono);
       fenetre.draw(texteNomJoueur);
+      fenetre.draw(texteScore);
 
       //On cree un rectangle autour du joueur pour detecter les collisions
       FloatRect rectJoueur = joueur.recupererSprite().getGlobalBounds();

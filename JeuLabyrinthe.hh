@@ -6,9 +6,6 @@
 #define NB_CHRONO 4
 #define NB_EXTINCTEUR 4
 
-const std::string CHEMIN_IMAGE_EXTINCTEUR = "images/extincteur.png";
-const sf::Vector2f TAILLE_IMAGE_EXTINCTEUR(51,51);
-
 const std::string CHEMIN_IMAGE_CHRONO = "images/chrono.png";
 const sf::Vector2f TAILLE_IMAGE_CHRONO(51,51);
 
@@ -20,7 +17,7 @@ class JeuLabyrinthe : public Jeu
 {
 public:
 
-  JeuLabyrinthe(std::string nom, int nbFumee, int nbChrono);
+  JeuLabyrinthe(std::string nom, int nbFumee, int nbChrono, int scoreActuel);
 
   int run();
 

@@ -3,8 +3,10 @@
 using namespace sf;
 using namespace std;
 
-JeuBrouillard::JeuBrouillard(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode Brouillard")
+JeuBrouillard::JeuBrouillard(string nomJoueur, int niveau, int scoreActuel):
+Jeu(nomJoueur, "Mode Brouillard")
 {
+  score = scoreActuel;
   int vitesse_fumee;
 
   if (niveau == 1)
@@ -43,8 +45,11 @@ JeuBrouillard::JeuBrouillard(string nomJoueur, int niveau):Jeu(nomJoueur, "Mode 
   }
 }
 
-JeuBrouillard::JeuBrouillard(string nomJoueur, string titre, int niveau):Jeu(nomJoueur, titre)
+JeuBrouillard::JeuBrouillard(string nomJoueur, string titre, int niveau, int scoreActuel):
+Jeu(nomJoueur, titre)
 {
+  score = scoreActuel;
+
   if (niveau == 1)
   {
     nb_fumee = 5;
@@ -295,10 +300,14 @@ int JeuBrouillard::run()
       texteNomJoueur.setString(nomJoueur);
       texteNomJoueur.setPosition(TAILLE_FENETRE_JEU.x - ((texteNomJoueur.getGlobalBounds()).width)*2,TAILLE_FENETRE_JEU.y - ((texteNomJoueur.getGlobalBounds()).height)*2);
 
+      texteScore.setString("Score : " + to_string(score));
+      texteScore.setPosition(TAILLE_FENETRE_JEU.x - ((texteScore.getGlobalBounds()).width)*2, ((texteScore.getGlobalBounds()).height)*2);
+
       fenetre.draw(contourPlateau);
       fenetre.draw(joueur.recupererSprite());
       fenetre.draw(texteChrono);
       fenetre.draw(texteNomJoueur);
+      fenetre.draw(texteScore);
 
       for (it2 = mapFumee.begin(); it2 != mapFumee.end(); ++it2)
       {

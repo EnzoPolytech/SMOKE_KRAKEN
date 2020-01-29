@@ -4,8 +4,6 @@
 
 #define NB_FUMEE_LISSAGE 12
 
-const std::string CHEMIN_IMAGE_EXTINCTEUR = "images/extincteur.png";
-const sf::Vector2f TAILLE_IMAGE_EXTINCTEUR(51,51);
 const int VITESSE_FUMEE_VAGUE = 1;
 const float PROBA_APPARITION = 0.50;
 
@@ -13,7 +11,7 @@ class JeuVague : public Jeu
 {
 public:
 
-  JeuVague(std::string nom, int niveau);
+  JeuVague(std::string nom, int niveau, int scoreActuel);
 
   int run();
 

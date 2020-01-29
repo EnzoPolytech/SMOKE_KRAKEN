@@ -17,6 +17,8 @@ public:
 
   std::string getNomJoueur(){return nomJoueur;}
 
+  int getScoreTotal(){return scoreTotal;}
+
 private:
 
   sf::RenderWindow fenetre;
@@ -30,5 +32,7 @@ private:
 
   sf::Texture boutonValider_t;
   sf::Sprite boutonValider_s;
+
+  int scoreTotal;
 
 };

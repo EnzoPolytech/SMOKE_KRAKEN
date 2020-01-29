@@ -2,15 +2,12 @@
 #include "Jeu.hh"
 #include "Objet.hh"
 
-const std::string CHEMIN_IMAGE_EXTINCTEUR = "images/extincteur.png";
-const sf::Vector2f TAILLE_IMAGE_EXTINCTEUR(51,51);
-
 class JeuBrouillard : public Jeu
 {
 public:
 
-  JeuBrouillard(std::string nom, int niveau);
-  JeuBrouillard(std::string nom, std::string titre, int niveau);
+  JeuBrouillard(std::string nom, int niveau, int scoreActuel);
+  JeuBrouillard(std::string nom, std::string titre, int niveau, int scoreActuel);
 
   int run();
 

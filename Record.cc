@@ -5,8 +5,6 @@ using namespace std;
 
 Record::Record():fenetre(VideoMode(LONGUEUR_RECORD,LARGEUR_RECORD,32), "Records", Style::Close)
 {
-  // listeRecords = {{"Record a venir ...", 0}};
-
   if(!police.loadFromFile("fonts/Arial.ttf"))
   {
       cout <<"Erreur durant le chargement de la police"<< endl;
@@ -34,7 +32,7 @@ Record::Record():fenetre(VideoMode(LONGUEUR_RECORD,LARGEUR_RECORD,32), "Records"
   }
 }
 
-Record::Record(std::map<std::string, int> rec):
+Record::Record(std::multimap<int, std::string, std::greater<int>> rec):
 fenetre(VideoMode(LONGUEUR_RECORD,LARGEUR_RECORD,32), "Records", Style::Close),
 listeRecords(rec)
 {
@@ -70,12 +68,14 @@ void Record::run()
 {
   fenetre.clear(Color(255,255,255,255));
 
-  map<string,int>::iterator it;
+  // std::sort(listeRecords.begin(), listeRecords.end());
+
+  multimap<int, std::string, std::greater<int>>::iterator it;
   int pos_y = LARGEUR_RECORD/4;
 
   for (it = listeRecords.begin(); it != listeRecords.end(); ++it)
   {
-    nomTemps += it->first + "       " + to_string(it->second) + " secondes";
+    nomTemps += it->second + "       " + to_string(it->first) + " extincteur(s)";
     Text rec(nomTemps,police,TAILLE_POLICE_RECORD);
     rec.setFillColor(Color(0,0,0,255));
     rec.setStyle(Text::Bold);

@@ -20,15 +20,15 @@ private:
   sf::Texture imageFond_t;
   sf::Texture boutonJouer_t;
   sf::Texture boutonRecord_t;
+  sf::Texture perso_t;
 
   sf::Sprite titre_s;
   sf::Sprite imageFond_s;
   sf::Sprite boutonJouer_s;
   sf::Sprite boutonRecord_s;
-  sf::Texture perso_t;
   sf::Sprite perso_s;
 
   //Pour remplir la fenetre Record
-  std::map<std::string,int> recordGlobal;
+  std::multimap<int, std::string, std::greater<int>> recordGlobal;
 
 };

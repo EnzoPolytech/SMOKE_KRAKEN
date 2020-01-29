@@ -3,9 +3,11 @@
 using namespace sf;
 using namespace std;
 
-JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono):
+JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono, int scoreActuel):
 Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTIE)
 {
+  score = scoreActuel;
+
   for (int i = 1; i <= nbFumee; ++i)
   {
     tabFumee.push_back(new Fumee());
@@ -220,12 +222,16 @@ int JeuLabyrinthe::run()
       texteNomJoueur.setString(nomJoueur);
       texteNomJoueur.setPosition(TAILLE_FENETRE_JEU.x - ((texteNomJoueur.getGlobalBounds()).width)*2,TAILLE_FENETRE_JEU.y - ((texteNomJoueur.getGlobalBounds()).height)*2);
 
+      texteScore.setString("Score : " + to_string(score));
+      texteScore.setPosition(TAILLE_FENETRE_JEU.x - ((texteScore.getGlobalBounds()).width)*2, ((texteScore.getGlobalBounds()).height)*2);
+
       //On dessine tout nos éléments sur notre fenetre
       fenetre.draw(contourPlateau);
       fenetre.draw(joueur.recupererSprite());
       fenetre.draw(sortie.recupererSprite());
       fenetre.draw(texteChrono);
       fenetre.draw(texteNomJoueur);
+      fenetre.draw(texteScore);
 
       //on parcours notre tableau de fumée
       for (int i = 1; i <= NB_FUMEE; ++i)

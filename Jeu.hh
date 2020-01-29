@@ -12,6 +12,9 @@
 
 #define TAILLE_POLICE_JEU 25
 
+
+const std::string CHEMIN_IMAGE_EXTINCTEUR = "images/extincteur.png";
+const sf::Vector2f TAILLE_IMAGE_EXTINCTEUR(51,51);
 const sf::Vector2f TAILLE_FENETRE_JEU(1024,639);
 const sf::Vector2f MILIEU(TAILLE_FENETRE_JEU.x/2,TAILLE_FENETRE_JEU.y/2);
 const sf::Vector2f POSITION_PLATEAU(MILIEU.x - 288, MILIEU.y - 310);
@@ -53,6 +56,7 @@ class Jeu{
 
     sf::Text texteChrono;
     sf::Text texteNomJoueur;
+    sf::Text texteScore;
 
     int score;
 

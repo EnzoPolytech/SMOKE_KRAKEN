@@ -115,7 +115,7 @@ void Menu::run()
           {
             NomJoueur pop;
             string nomTemp = pop.run();
-            recordGlobal.insert(std::make_pair(nomTemp, 0));
+            recordGlobal.insert(std::make_pair(pop.getScoreTotal(), nomTemp));
           }
           else if (limiteBoutonRecord.contains(positionSouris))
           {

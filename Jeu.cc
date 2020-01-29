@@ -21,12 +21,16 @@ monEtat(Pause),tempsEcoule(),chrono()
     texteNomJoueur.setFont(font);
     texteNomJoueur.setCharacterSize(TAILLE_POLICE_JEU);
     texteNomJoueur.setFillColor(Color::Black);
+
+    texteScore.setFont(font);
+    texteScore.setCharacterSize(TAILLE_POLICE_JEU);
+    texteScore.setFillColor(Color::Black);
   }
 
   fenetre.clear(Color(255,255,255,255));
 
-  // Frames Per Second (FPS)
-  fenetre.setFramerateLimit(60); // limite la fenêtre à 60 images par seconde
+  // limite la fenêtre à 60 images par seconde
+  fenetre.setFramerateLimit(60);
 }
 
 Jeu::Jeu(string nomJoueur, string titre):joueur(), nomJoueur(nomJoueur),
@@ -47,12 +51,16 @@ monEtat(Pause),tempsEcoule(),chrono()
     texteNomJoueur.setFont(font);
     texteNomJoueur.setCharacterSize(TAILLE_POLICE_JEU);
     texteNomJoueur.setFillColor(Color::Black);
+
+    texteScore.setFont(font);
+    texteScore.setCharacterSize(TAILLE_POLICE_JEU);
+    texteScore.setFillColor(Color::Black);
   }
 
   fenetre.clear(Color(255,255,255,255));
 
-  // Frames Per Second (FPS)
-  fenetre.setFramerateLimit(60); // limite la fenêtre à 60 images par seconde
+  // limite la fenêtre à 60 images par seconde
+  fenetre.setFramerateLimit(60);
 }
 
 void Jeu::lancerChrono()

@@ -10,7 +10,7 @@ class Record
 {
 public:
   Record();
-  Record(std::map<std::string, int> rec);
+  Record(std::multimap<int, std::string, std::greater<int>> rec);
 
   void run();
 
@@ -26,6 +26,6 @@ private:
 
   std::string nomTemps;
 
-  std::map<std::string,int> listeRecords;
+  std::multimap<int, std::string, std::greater<int>> listeRecords;
 
 };
