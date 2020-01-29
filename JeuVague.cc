@@ -3,6 +3,9 @@
 using namespace sf;
 using namespace std;
 
+int VITESSE_FUMEE_VAGUE;
+float PROBA_APPARITION;
+
 JeuVague::JeuVague(string nomJoueur, int niveau, int scoreActuel):
 Jeu(nomJoueur, "Mode Vague")
 {
@@ -10,15 +13,18 @@ Jeu(nomJoueur, "Mode Vague")
 
   if (niveau == 1)
   {
-    //??
+    VITESSE_FUMEE_VAGUE = 1;
+    PROBA_APPARITION = 0.40;
   }
   else if (niveau == 2)
   {
-    //??
+    VITESSE_FUMEE_VAGUE = 2;
+    PROBA_APPARITION = 0.50;
   }
   else
   {
-   //??
+    VITESSE_FUMEE_VAGUE = 2;
+    PROBA_APPARITION = 0.60;
   }
 
   for (int i = 1; i <= NB_FUMEE_LISSAGE; ++i)

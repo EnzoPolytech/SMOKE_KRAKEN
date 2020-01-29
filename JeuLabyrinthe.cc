@@ -6,27 +6,38 @@ using namespace std;
 JeuLabyrinthe::JeuLabyrinthe(string nomJoueur, int nbFumee, int nbChrono, int scoreActuel):
 Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTIE)
 {
+  //On ralenti le joueur pour qu'il puisse éviter les obstacle du labyrinthe plus facilement
+  joueur.modifierVitesse(2);
+
+  //On initialise son score en fonction de son score global
   score = scoreActuel;
 
+  //On cree nos fumee
   for (int i = 1; i <= nbFumee; ++i)
   {
     tabFumee.push_back(new Fumee());
   }
+
+  //On cree nos Chronp
   for (int i = 1; i <= nbChrono; ++i)
   {
     tabChrono.push_back(new Objet(CHEMIN_IMAGE_CHRONO, TAILLE_IMAGE_CHRONO));
   }
+
+  //On cree nos extincteurs
   for (int i = 1; i <= NB_EXTINCTEUR; ++i)
   {
     tabExtincteur.push_back(new Objet(CHEMIN_IMAGE_EXTINCTEUR, TAILLE_IMAGE_EXTINCTEUR));
   }
 
+  //On place le joueur au debut du labyrinthe
   int pos_joueur_ini_X = POSITION_PLATEAU.x;
   int pos_joueur_ini_Y = POSITION_PLATEAU.y + (TAILLE_PLATEAU.y / 2);
   Vector2f pos_joueur_ini = Vector2f(pos_joueur_ini_X, pos_joueur_ini_Y);
 
   joueur.modifierPosition(pos_joueur_ini);
 
+  //On place la sortie a la fin du labyrinthe
   sortie.modifierPosition(Vector2f(POSITION_PLATEAU.x + 10*TAILLE_IMAGE_FUMEE.x,POSITION_PLATEAU.y + 5));
 
   //On positionne les fumees
@@ -51,7 +62,7 @@ Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTI
 
   (*tabFumee[10]).modifierPosition(Vector2f(pos_joueur_ini.x + TAILLE_IMAGE_JOUEUR.x, pos_joueur_ini.y - 4*TAILLE_IMAGE_FUMEE.y));
 
-  //on positionne des lignes de fumee
+  //on positionne des lignes de fumee pour economiser des lignes de code
 
   for (int i = 11; i < 17; ++i)
   {
@@ -99,7 +110,7 @@ Jeu(nomJoueur, "Mode Labyrinthe"), sortie(CHEMIN_IMAGE_SORTIE,TAILLE_IMAGE_SORTI
   (*tabFumee[43]).modifierPosition(Vector2f(pos_joueur_ini.x + TAILLE_IMAGE_JOUEUR.x + 9*TAILLE_IMAGE_FUMEE.x, pos_joueur_ini.y + 6*TAILLE_IMAGE_FUMEE.y - TAILLE_IMAGE_JOUEUR.y - 50));
   (*tabFumee[44]).modifierPosition(Vector2f(pos_joueur_ini.x + TAILLE_IMAGE_JOUEUR.x + 9*TAILLE_IMAGE_FUMEE.x, pos_joueur_ini.y + 5*TAILLE_IMAGE_FUMEE.y - TAILLE_IMAGE_JOUEUR.y - 35));
 
-  //On positionne les chrono
+  //On positionne les chronos
 
   (*tabChrono[0]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 7*TAILLE_IMAGE_CHRONO.x, POSITION_PLATEAU.y));
   (*tabChrono[1]).modifierPosition(Vector2f(POSITION_PLATEAU.x + 9*TAILLE_IMAGE_CHRONO.x, POSITION_PLATEAU.y + 5*TAILLE_IMAGE_CHRONO.y));

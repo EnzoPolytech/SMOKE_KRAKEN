@@ -1,10 +1,10 @@
 #include "FinDePartie.hh"
-#include "Intro.hh"
-#include "Scene1.hh"
-#include "Scene2.hh"
-#include "JeuVague.hh"
-#include "JeuLabyrinthe.hh"
-#include "JeuBrouillard.hh"
+// #include "Intro.hh"
+// #include "Scene1.hh"
+// #include "Scene2.hh"
+// #include "JeuVague.hh"
+// #include "JeuLabyrinthe.hh"
+// #include "JeuBrouillard.hh"
 
 using namespace sf;
 using namespace std;

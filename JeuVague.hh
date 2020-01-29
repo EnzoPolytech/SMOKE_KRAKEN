@@ -4,9 +4,6 @@
 
 #define NB_FUMEE_LISSAGE 12
 
-const int VITESSE_FUMEE_VAGUE = 1;
-const float PROBA_APPARITION = 0.50;
-
 class JeuVague : public Jeu
 {
 public:
