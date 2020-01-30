@@ -10,6 +10,7 @@ const sf::Vector2f TAILLE_FENETRE_JOUEUR(1024,639);
 // PERSONNAGE
 
 const sf::Vector2f TAILLE_IMAGE_JOUEUR(45,81);
+const sf::Vector2f TAILLE_IMAGE_JOUEUR_ACCROUPI(35,51);
 const int VITESSE_JOUEUR = 4;
 const sf::Vector2f POS_INIT_JOUEUR(TAILLE_FENETRE_JOUEUR.x / 2 - TAILLE_IMAGE_JOUEUR.x/4, TAILLE_FENETRE_JOUEUR.y / 2 - TAILLE_IMAGE_JOUEUR.y/2 );
 
@@ -33,6 +34,10 @@ public :
 
     void modifierVitesse(int vit){vitesse = vit;}
 
+    void accroupir(bool b);
+
+    int getEstAccroupi(){return estAccroupi;}
+
 
 private :
 
@@ -44,7 +49,9 @@ private :
 
     sf::Vector2f position;
     sf::Vector2f taille;
+
     int vitesse;
+    int estAccroupi;
 
 
 

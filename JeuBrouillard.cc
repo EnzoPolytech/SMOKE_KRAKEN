@@ -123,20 +123,32 @@ int JeuBrouillard::run()
             return 0;
             break;
 
-          // case Event::KeyPressed : // Appui sur une touche
-          //   switch(event.key.code)
-          //   {
-          //     //CA MARCHE PAS !
+          case Event::KeyPressed : // Appui sur une touche
+            switch(event.key.code)
+            {
+              //CA MARCHE PAS !
 
-          //     // case Keyboard::P : // Touche P : mettre le jeu en Pause
-          //     //   pauseChrono();
-          //     //   joueur.reinitialiserPosition();
-          //       // break;
+              // case Keyboard::P : // Touche P : mettre le jeu en Pause
+              //   pauseChrono();
+              //   joueur.reinitialiserPosition();
+                // break;
 
-          //       default:
-          //         break;
-          //   }
-          // break;
+                case Keyboard::C : //Touche C ; s'accroupir
+
+                  if (joueur.getEstAccroupi() == 0)
+                  {
+                    joueur.accroupir(true);
+                  }
+                  else
+                  {
+                    joueur.accroupir(false);
+                  }
+                  break;
+
+                default:
+                  break;
+            }
+          break;
 
           default :
             break;
@@ -154,16 +166,36 @@ int JeuBrouillard::run()
       }
       else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
       {
-        if (joueur.recupererSprite().getPosition().y + TAILLE_IMAGE_JOUEUR.y < POSITION_PLATEAU.y + TAILLE_PLATEAU.y)
+        if(joueur.getEstAccroupi() == 0)
         {
-          joueur.deplacerBas();
+          if (joueur.recupererSprite().getPosition().y + TAILLE_IMAGE_JOUEUR.y < POSITION_PLATEAU.y + TAILLE_PLATEAU.y)
+          {
+            joueur.deplacerBas();
+          }
+        }
+        else
+        {
+          if (joueur.recupererSprite().getPosition().y + TAILLE_IMAGE_JOUEUR_ACCROUPI.y < POSITION_PLATEAU.y + TAILLE_PLATEAU.y)
+          {
+            joueur.deplacerBas();
+          }
         }
       }
       else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
       {
-        if (joueur.recupererSprite().getPosition().x + TAILLE_IMAGE_JOUEUR.x < POSITION_PLATEAU.x + TAILLE_PLATEAU.x)
+        if(joueur.getEstAccroupi() == 0)
         {
-          joueur.deplacerDroite();
+          if (joueur.recupererSprite().getPosition().x + TAILLE_IMAGE_JOUEUR.x < POSITION_PLATEAU.x + TAILLE_PLATEAU.x)
+          {
+            joueur.deplacerDroite();
+          }
+        }
+        else
+        {
+          if (joueur.recupererSprite().getPosition().x + TAILLE_IMAGE_JOUEUR_ACCROUPI.x < POSITION_PLATEAU.x + TAILLE_PLATEAU.x)
+          {
+            joueur.deplacerDroite();
+          }
         }
       }
       else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -187,19 +219,26 @@ int JeuBrouillard::run()
 
       map<Fumee *, int>::iterator it2; //Un itérateur sur la mapFumee
 
+      //On parcour notre map de fumee
       for (it2 = mapFumee.begin(); it2 != mapFumee.end(); ++it2)
       {
-        FloatRect rectJoueur = joueur.recupererSprite().getGlobalBounds();
-        rectJoueur.height -= 10;
-        //Si le joueur touche une fumee, la partie est finie
-        if (rectJoueur.intersects((*(it2->first)).recupererSprite().getGlobalBounds()))
-        {
-          FinDePartie end;
-          end.run();
-          fenetre.close();
-          return 0;
+          FloatRect rectJoueur = joueur.recupererSprite().getGlobalBounds();
+          rectJoueur.height -= 10;
+          rectJoueur.top -= 10;
+
+            FloatRect rectFumee = ((*(it2->first)).recupererSprite()).getGlobalBounds();
+            rectFumee.height -= 10;
+            rectFumee.width -= 2;
+            rectFumee.top -= 10;
+            //Si la fumee touche le joueur, la partie est finie
+            if (rectJoueur.intersects(rectFumee))
+            {
+              FinDePartie end;
+              end.run();
+              fenetre.close();
+              return 0;
+            }
         }
-      }
 
         for (it2 = mapFumee.begin(); it2 != mapFumee.end(); ++it2)
         {

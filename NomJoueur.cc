@@ -179,17 +179,17 @@ string NomJoueur::run()
           {
             /* Mettre ici le run() de la Fenetre de Jeu ! */
 
-            Intro intro1;
-            intro1.run();
+            // Intro intro1;
+            // intro1.run();
 
-            JeuVague app1(nomJoueur, 1, scoreTotal);
-            scoreTotal += app1.run();
+            // JeuVague app1(nomJoueur, 1, scoreTotal);
+            // scoreTotal += app1.run();
 
             // Scene1 scene1;
             // scene1.run();
 
-            // JeuBrouillard app2(nomJoueur, 1, scoreTotal);
-            // scoreTotal += app2.run();
+            JeuBrouillard app2(nomJoueur, 1, scoreTotal);
+            scoreTotal += app2.run();
 
             // Scene2 scene2;
             // scene2.run();
