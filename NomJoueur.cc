@@ -179,14 +179,14 @@ string NomJoueur::run()
           {
             /* Mettre ici le run() de la Fenetre de Jeu ! */
 
-            // Intro intro1;
-            // intro1.run();
+            Intro intro1;
+            intro1.run();
 
-            // JeuVague app1(nomJoueur, 1, scoreTotal);
-            // scoreTotal += app1.run();
+            JeuVague app1(nomJoueur, 1, scoreTotal);
+            scoreTotal += app1.run();
 
-            // Scene1 scene1;
-            // scene1.run();
+            Scene1 scene1;
+            scene1.run();
 
             JeuBrouillard app2(nomJoueur, 1, scoreTotal);
             scoreTotal += app2.run();
@@ -213,11 +213,11 @@ string NomJoueur::run()
             // JeuVague app6(nomJoueur, 3, scoreTotal);
             // scoreTotal += app6.run();
 
-            // Scene6 scene6;
-            // scene6.run();
+            Scene6 scene6;
+            scene6.run();
 
-            // JeuLabyrinthe app7(nomJoueur, NB_FUMEE, NB_CHRONO, scoreTotal);
-            // scoreTotal += app7.run();
+            JeuLabyrinthe app7(nomJoueur, NB_FUMEE, NB_CHRONO, scoreTotal);
+            scoreTotal += app7.run();
 
             //Scene 7 (Scene finale) ici
 
